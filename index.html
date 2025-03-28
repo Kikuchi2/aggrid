@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ag-grid デモシステム</title>
+
+  <!-- ag-gridのCSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ag-grid-community/styles/ag-grid.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ag-grid-community/styles/ag-theme-alpine.css">
+
+  <!-- ag-gridのJavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/ag-grid-community/dist/ag-grid-community.noStyle.js"></script>
+
+  <style>
+    html, body, #grid-container {
+      height: 100%;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    .ag-theme-alpine {
+      height: 90vh;
+      width: 90%;
+      margin: 30px auto;
+    }
+  </style>
+</head>
+<body>
+
+  <h2 style="text-align:center;">ag-grid デモシステム</h2>
+
+  <div id="grid-container" class="ag-theme-alpine"></div>
+
+  <script>
+    const columnDefs = [
+      { headerName: "ID", field: "id", sortable: true, filter: true },
+      { headerName: "名前", field: "name", sortable: true, filter: true },
+      { headerName: "年齢", field: "age", sortable: true, filter: true },
+      { headerName: "職業", field: "job", sortable: true, filter: true },
+    ];
+
+    const rowData = [
+      { id: 1, name: "山田 太郎", age: 25, job: "エンジニア" },
+      { id: 2, name: "佐藤 花子", age: 30, job: "デザイナー" },
+      { id: 3, name: "鈴木 次郎", age: 28, job: "プロジェクトマネージャー" },
+      { id: 4, name: "高橋 美咲", age: 35, job: "マーケター" },
+      { id: 5, name: "伊藤 健", age: 40, job: "営業" },
+    ];
+
+    const gridOptions = {
+      columnDefs,
+      rowData,
+      defaultColDef: { resizable: true, editable: true },
+      rowSelection: 'multiple',
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const gridDiv = document.querySelector('#grid-container');
+      new agGrid.Grid(gridDiv, gridOptions);
+    });
+  </script>
+</body>
+</html>
+
