@@ -1,75 +1,35 @@
-<!DOCTYPE html>
-<html lang="ja">
-  <head>
-    <meta charset="UTF-8" />
-    <title>ag-Grid デモ</title>
-
-    <!-- ag-grid本体のmin版を読み込む -->
-    <script src="https://cdn.jsdelivr.net/npm/ag-grid-community/dist/ag-grid-community.min.js"></script>
-
-    <!-- ag-gridの基本CSSを読み込む -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/ag-grid-community/dist/styles/ag-grid.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/ag-grid-community/dist/styles/ag-theme-alpine.min.css"
-    />
-
-    <style>
-      html,
-      body {
-        margin: 0;
-        padding: 0;
-        height: 100%;
-      }
-      #myGrid {
-        width: 100%;
-        height: 100vh;
-      }
-    </style>
-  </head>
-  <body>
-    <h1>ag-Grid デモ</h1>
-    <div id="myGrid" class="ag-theme-alpine"></div>
-
+<html lang="en">
+    <head>
+        <!-- Includes all JS & CSS for the JavaScript Data Grid -->
+        <script src="https://cdn.jsdelivr.net/npm/ag-grid-community/dist/ag-grid-community.min.js"></script>
+    </head>
+    <body>
+        <!-- Your Data Grid container -->
+        <div id="myGrid" style="height: 500px"></div>
+    </body>
     <script>
-      // テーブルのカラム定義
-      const columnDefs = [
-        { headerName: 'ID', field: 'id', sortable: true, filter: true },
-        { headerName: '名前', field: 'name', sortable: true, filter: true },
-        { headerName: '年齢', field: 'age', sortable: true, filter: true },
-        { headerName: '職業', field: 'job', sortable: true, filter: true },
-      ];
+// Grid Options: Contains all of the Data Grid configurations
+const gridOptions = {};
 
-      // テーブルに表示するデータ
-      const rowData = [
-        { id: 1, name: '山田 太郎', age: 25, job: 'エンジニア' },
-        { id: 2, name: '佐藤 花子', age: 30, job: 'デザイナー' },
-        { id: 3, name: '鈴木 次郎', age: 28, job: 'PM' },
-        { id: 4, name: '高橋 美咲', age: 35, job: 'マーケター' },
-        { id: 5, name: '伊藤 健', age: 40, job: '営業' },
-      ];
+// Your Javascript code to create the Data Grid
+const myGridElement = document.querySelector('#myGrid');
 
-      // Gridの設定
-      const gridOptions = {
-        columnDefs: columnDefs,
-        rowData: rowData,
-        defaultColDef: {
-          // 列リサイズ可能
-          resizable: true,
-          // セル編集可
-          editable: true,
-        },
-        rowSelection: 'multiple',
-      };
-
-      document.addEventListener('DOMContentLoaded', function () {
-        // myGridを取得してag-Gridを描画
-        const eGridDiv = document.querySelector('#myGrid');
-        new agGrid.Grid(eGridDiv, gridOptions);
-      });
+// Grid Options: Contains all of the Data Grid configurations
+const gridOptions = {
+    // Row Data: The data to be displayed.
+    rowData: [
+        { make: "Tesla", model: "Model Y", price: 64950, electric: true },
+        { make: "Ford", model: "F-Series", price: 33850, electric: false },
+        { make: "Toyota", model: "Corolla", price: 29600, electric: false },
+    ],
+    // Column Definitions: Defines the columns to be displayed.
+    columnDefs: [
+        { field: "make" },
+        { field: "model" },
+        { field: "price" },
+        { field: "electric" }
+    ]
+};
+agGrid.createGrid(myGridElement, gridOptions);
     </script>
-  </body>
-</html>
+</html>  
